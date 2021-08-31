@@ -13,7 +13,8 @@ export default {
 </script>
 <style lang="scss">
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  background-color: $beige;
+  font-family: 'SourceCode-Light', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
@@ -21,6 +22,11 @@ html,
 body {
   margin: 0;
   padding: 0;
+}
+
+body {
+  right: 0;
+  left: 0;
 }
 
 *,

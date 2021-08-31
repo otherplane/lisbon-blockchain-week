@@ -1,15 +1,17 @@
 import { languages } from './constants'
 import { fallbackLocale } from './default'
 
+const base = '/lisbon-blockchain-week'
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
   router: {
-    base: '/',
+    base,
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'LisCon - Oct 20-21 2021 ',
+    title: 'Lisbon Blockchain Week - 2021',
     htmlAttrs: {
       lang: 'en',
     },
@@ -20,65 +22,72 @@ export default {
       {
         hid: 'title',
         name: 'title',
-        content: 'LisCon - Oct 20-21 2021',
+        content: 'Lisbon Blockchain Week - 2021',
       },
       {
         hid: 'description',
         name: 'description',
         content:
-          'LisCon is the Ethereum Conference for developers, researchers, thinkers and makers',
+          'The Lisbon Blockchain Week (Oct 18-24, 2021) will gather the greatest BUIDlers in crypto and Web3 for an entire week full of community-organized events, conferences, parties, and surprises!',
       },
       {
         hid: 'twitter:title',
         name: 'twitter:title',
-        content: 'LisCon - Oct 20-21 2021',
+        content: 'Lisbon Blockchain Week - 2021',
       },
       {
         hid: 'twitter:description',
         name: 'twitter:description',
         content:
-          'LisCon is the Ethereum Conference for developers, researchers, thinkers and makers',
+          'The Lisbon Blockchain Week (Oct 18-24, 2021) will gather the greatest BUIDlers in crypto and Web3 for an entire week full of community-organized events, conferences, parties, and surprises!',
       },
-      {
-        hid: 'twitter:image',
-        name: 'twitter:image',
-        content: '/',
-      },
-      {
-        hid: 'twitter:image:alt',
-        name: 'twitter:image:alt',
-        content: 'alt',
-      },
+      // {
+      //   hid: 'twitter:image',
+      //   name: 'twitter:image',
+      //   content: '/',
+      // },
+      // {
+      //   hid: 'twitter:image:alt',
+      //   name: 'twitter:image:alt',
+      //   content: 'alt',
+      // },
       {
         hid: 'og:title',
         property: 'og:title',
-        content: 'LisCon - Oct 20-21 2021',
+        content: 'Lisbon Blockchain Week - 2021',
       },
       {
         hid: 'og:description',
         property: 'og:description',
         content:
-          'LisCon is the Ethereum Conference for developers, researchers, thinkers and makers',
+          'The Lisbon Blockchain Week (Oct 18-24, 2021) will gather the greatest BUIDlers in crypto and Web3 for an entire week full of community-organized events, conferences, parties, and surprises!',
       },
-      {
-        hid: 'og:image',
-        property: 'og:image',
-        content: '/',
-      },
-      {
-        hid: 'og:image:secure_url',
-        property: 'og:image:secure_url',
-        content: '/',
-      },
-      {
-        hid: 'og:image:alt',
-        property: 'og:image:alt',
-        content: 'EXAMPLE',
-      },
+      // {
+      //   hid: 'og:image',
+      //   property: 'og:image',
+      //   content: '/',
+      // },
+      // {
+      //   hid: 'og:image:secure_url',
+      //   property: 'og:image:secure_url',
+      //   content: '/',
+      // },
+      // {
+      //   hid: 'og:image:alt',
+      //   property: 'og:image:alt',
+      //   content: 'EXAMPLE',
+      // },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'shortcut icon', href: '/favicon.ico' },
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: base === '/' ? '/favicon.ico' : `${base}/favicon.ico`,
+      },
+      {
+        rel: 'shortcut icon',
+        href: base === '/' ? '/favicon.ico' : `${base}/favicon.ico`,
+      },
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap',
@@ -90,7 +99,11 @@ export default {
     ],
   },
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~/assets/styles/colors.scss', '~/assets/styles/main.scss'],
+  css: [
+    '~/assets/styles/colors.scss',
+    '~/assets/styles/main.scss',
+    '~/assets/fonts/style.css',
+  ],
   // You will have to add this new object if it doesn't exist already
   styleResources: {
     scss: ['~/assets/styles/colors.scss', '~/assets/styles/main.scss'],
@@ -108,11 +121,13 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxtjs/date-fns',
     '@nuxtjs/fontawesome',
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
+    '@nuxtjs/svg',
   ],
 
   // fontawesome: {

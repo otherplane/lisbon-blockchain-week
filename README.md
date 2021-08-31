@@ -1,4 +1,4 @@
-# LisCon week
+# lisbon-blockchain-week
 
 ## Build Setup
 
