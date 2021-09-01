@@ -9,7 +9,7 @@ export default {
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'LisCon - Oct 20-21 2021 ',
+    title: 'Lisbon Blockchain Week - 2021',
     htmlAttrs: {
       lang: 'en',
     },
@@ -20,24 +20,24 @@ export default {
       {
         hid: 'title',
         name: 'title',
-        content: 'LisCon - Oct 20-21 2021',
+        content: 'LisbonBlockchainWeek - 2021',
       },
       {
         hid: 'description',
         name: 'description',
         content:
-          'LisCon is the Ethereum Conference for developers, researchers, thinkers and makers',
+          'The Lisbon Blockchain Week (Oct 18-24, 2021) will gather the greatest BUIDlers in crypto and Web3 for an entire week full of community-organized events, conferences, parties, and surprises!',
       },
       {
         hid: 'twitter:title',
         name: 'twitter:title',
-        content: 'LisCon - Oct 20-21 2021',
+        content: 'LisbonBlockchainWeek - 2021',
       },
       {
         hid: 'twitter:description',
         name: 'twitter:description',
         content:
-          'LisCon is the Ethereum Conference for developers, researchers, thinkers and makers',
+          'The Lisbon Blockchain Week (Oct 18-24, 2021) will gather the greatest BUIDlers in crypto and Web3 for an entire week full of community-organized events, conferences, parties, and surprises!',
       },
       {
         hid: 'twitter:image',
@@ -52,13 +52,13 @@ export default {
       {
         hid: 'og:title',
         property: 'og:title',
-        content: 'LisCon - Oct 20-21 2021',
+        content: 'LisbonBlockchainWeek - 2021',
       },
       {
         hid: 'og:description',
         property: 'og:description',
         content:
-          'LisCon is the Ethereum Conference for developers, researchers, thinkers and makers',
+          'The Lisbon Blockchain Week (Oct 18-24, 2021) will gather the greatest BUIDlers in crypto and Web3 for an entire week full of community-organized events, conferences, parties, and surprises!',
       },
       {
         hid: 'og:image',
@@ -90,7 +90,11 @@ export default {
     ],
   },
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~/assets/styles/colors.scss', '~/assets/styles/main.scss'],
+  css: [
+    '~/assets/styles/colors.scss',
+    '~/assets/styles/main.scss',
+    '~/assets/fonts/style.css',
+  ],
   // You will have to add this new object if it doesn't exist already
   styleResources: {
     scss: ['~/assets/styles/colors.scss', '~/assets/styles/main.scss'],
@@ -99,7 +103,10 @@ export default {
   modules: ['@nuxtjs/style-resources', '@nuxtjs/i18n'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~/plugins/vueSelect.js', ssr: false }],
+  plugins: [
+    { src: '~/plugins/vueSelect.js', ssr: false },
+    { src: '~/plugins/click-outside.js', ssr: false },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: {
@@ -114,6 +121,7 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
+    '@nuxtjs/svg',
   ],
 
   // fontawesome: {
