@@ -53,6 +53,7 @@ export default {
   .vs__dropdown-menu {
     width: max-content;
     max-width: max-content;
+    overflow: hidden;
     padding: 0;
     background: $beige;
     border: 2px solid $blue;
@@ -76,7 +77,7 @@ export default {
 
   .vs__dropdown-option {
     font-size: 1rem;
-    padding: 12px;
+    padding: 10px;
     margin: 4px;
     font-weight: 600;
     color: $blue;

@@ -11,3 +11,51 @@ export const languages = [
     iso: 'pt-PT',
   },
 ]
+
+export const EVENT_CATEGORIES = [
+  { label: 'All' },
+  { label: 'Favorites' },
+  { label: 'Conferences' },
+  { label: 'Drinks' },
+  { label: 'Events' },
+  { label: 'Hackathons' },
+  { label: 'Workshops' },
+]
+
+export const WEEK = {
+  30: {
+    key: '30',
+    timestamp: 1632991801000,
+    name: 'Mon',
+  },
+  31: {
+    key: '31',
+    timestamp: 633078201000,
+    name: 'Tue',
+  },
+  '01': {
+    key: '01',
+    timestamp: 1630486201000,
+    name: 'Wed',
+  },
+  '02': {
+    key: '02',
+    timestamp: 1630572601000,
+    name: 'Thur',
+  },
+  '03': {
+    key: '03',
+    timestamp: 1630659001000,
+    name: 'Fri',
+  },
+  '04': {
+    key: '04',
+    timestamp: 1630745401000,
+    name: 'Sat',
+  },
+  '05': {
+    key: '05',
+    timestamp: 1630831801000,
+    name: 'Sun',
+  },
+}

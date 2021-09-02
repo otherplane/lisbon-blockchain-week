@@ -75,6 +75,9 @@ export default {
     overflow-y: auto;
     overflow-x: hidden;
   }
+  .main::-webkit-scrollbar {
+    display: none;
+  }
   .close-btn {
     position: fixed;
     cursor: pointer;

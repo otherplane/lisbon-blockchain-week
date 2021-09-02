@@ -59,56 +59,19 @@
 
 <script>
 import { format } from 'date-fns'
+import { EVENT_CATEGORIES, WEEK } from '~/constants.js'
 
 export default {
+  props: {
+    data: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
     return {
-      days: {
-        30: {
-          key: '30',
-          timestamp: 1632991801000,
-          name: 'Mon',
-        },
-        31: {
-          key: '31',
-          timestamp: 633078201000,
-          name: 'Tue',
-        },
-        '01': {
-          key: '01',
-          timestamp: 1630486201000,
-          name: 'Wed',
-        },
-        '02': {
-          key: '02',
-          timestamp: 1630572601000,
-          name: 'Thur',
-        },
-        '03': {
-          key: '03',
-          timestamp: 1630659001000,
-          name: 'Fri',
-        },
-        '04': {
-          key: '04',
-          timestamp: 1630745401000,
-          name: 'Sat',
-        },
-        '05': {
-          key: '05',
-          timestamp: 1630831801000,
-          name: 'Sun',
-        },
-      },
-      options: [
-        { label: 'All' },
-        { label: 'Favorites' },
-        { label: 'Conferences' },
-        { label: 'Drinks' },
-        { label: 'Events' },
-        { label: 'Hackathons' },
-        { label: 'Workshops' },
-      ],
+      days: WEEK,
+      options: EVENT_CATEGORIES,
       selected: { label: 'All' },
       filteredEvents: [],
       selectedEvents: [],
@@ -117,6 +80,7 @@ export default {
       isModalVisible: false,
       events: [
         {
+          index: 0,
           title: 'rAAVEE',
           description:
             "Join us from 6pm-11pm for dinner and drinks on the rooftop at the Salle Du Haut Conseil. After 10pm we’ll descend to the basement at Salle Hypostyle to dance the night away. Reservations are required and all attendees can claim a proof-of-rAAVE NFT as a commemorative token of our evening together. Entry includes dinner and open bar with options for all dietary restrictions (vegetarian, pescatarian, etc). Let's rAAVE! DJs - Boys Noize, Breakbot & Irfane, Busy P, Numan, SHUTL, Yuko Kakizawa, Freiboitar Must be over 18 to attend. Follow @AaveAave on Twitter. Details - This event is INVITE ONLY. No invite, no entry. Limit 1 ticket per registration, please ensure +1s register individually. Only verified guests of the event sponsors will be able to enter. Registration does not ensure admittance; you must be confirmed via your sponsor and on their private guest list. Only register under the sponsor from whom you were invited. If sold out, please reach out to irene@aave.com to be added to the waiting list. Please attend this event only if you have not been in close contact with any individual infected with COVID-19 in the past 14 days or if you are currently experiencing or have experienced in the past 14 days fever, cough, or shortness of breath. Sanitizer stations will be available on arrival and throughout the venue.",
@@ -131,6 +95,7 @@ export default {
           to: 1630572601000 + 90000 + 90000,
         },
         {
+          index: 1,
           title: 'rAAVE',
           description:
             "Join us from 6pm-11pm for dinner and drinks on the rooftop at the Salle Du Haut Conseil. After 10pm we’ll descend to the basement at Salle Hypostyle to dance the night away. Reservations are required and all attendees can claim a proof-of-rAAVE NFT as a commemorative token of our evening together. Entry includes dinner and open bar with options for all dietary restrictions (vegetarian, pescatarian, etc). Let's rAAVE! DJs - Boys Noize, Breakbot & Irfane, Busy P, Numan, SHUTL, Yuko Kakizawa, Freiboitar Must be over 18 to attend. Follow @AaveAave on Twitter. Details - This event is INVITE ONLY. No invite, no entry. Limit 1 ticket per registration, please ensure +1s register individually. Only verified guests of the event sponsors will be able to enter. Registration does not ensure admittance; you must be confirmed via your sponsor and on their private guest list. Only register under the sponsor from whom you were invited. If sold out, please reach out to irene@aave.com to be added to the waiting list. Please attend this event only if you have not been in close contact with any individual infected with COVID-19 in the past 14 days or if you are currently experiencing or have experienced in the past 14 days fever, cough, or shortness of breath. Sanitizer stations will be available on arrival and throughout the venue.",
@@ -145,6 +110,7 @@ export default {
           to: 1630572601000 + 80000,
         },
         {
+          index: 2,
           title: 'Polkadot at ETHCC',
           description:
             'Join Polkadot at ETHCC for an intimate gathering in one of the most sexy venues in town, the SkillZ office located in the bustling Pigalle District in Paris. We will discuss the latest developments, meet with early stage projects, investors, and pioneers of the Polkadot Network. Speakers from Moonbeam Network, Manta Network, Ternoa, and TRGC.',
@@ -182,27 +148,18 @@ export default {
     },
   },
   mounted() {
-    this.fetchEvents()
     this.setFavs()
-    this.selectedEvents = this.events
     this.setCurrentEvent()
     this.filterEvents()
   },
   methods: {
     setFavs() {
-      if (this.favs) {
-        this.favs.forEach((fav) => (this.events[fav.index].favorite = true))
-      }
-    },
-    fetchEvents() {
-      this.events = this.events
-        .sort((e1, e2) => e1.from - e2.from)
-        .map((event, index) => {
-          return {
-            ...event,
-            index,
-          }
+      this.selectedEvents = this.events
+      if (this.favs && this.favs.length) {
+        this.favs.forEach((fav) => {
+          this.events[fav.index].favorite = true
         })
+      }
     },
     setCurrentDay(day) {
       this.currentDay = day
@@ -244,6 +201,7 @@ export default {
         }
         return event
       })
+      this.selectedEvents = this.events
     },
     filterEvents(events) {
       let eventsToFilter = this.events
@@ -254,12 +212,14 @@ export default {
       if (!isTimeForEvent) {
         this.currentDay = this.keyDays[0]
       }
-      this.filteredEvents = eventsToFilter.filter((event) => {
-        return (
-          this.getDate(event.from) ===
-          this.getDate(this.days[this.currentDay].timestamp || 0)
-        )
-      })
+      this.filteredEvents = eventsToFilter
+        .filter((event) => {
+          return (
+            this.getDate(event.from) ===
+            this.getDate(this.days[this.currentDay].timestamp || 0)
+          )
+        })
+        .sort((ev1, ev2) => ev1.from - ev2.from)
     },
     updateSelected(selectedOption) {
       this.selected = selectedOption

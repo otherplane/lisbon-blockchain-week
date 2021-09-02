@@ -2,7 +2,11 @@
 export default {
   mounted() {
     const listener = (e) => {
-      if (e.target === this.$el || e.target.classList[0] === 'trigger') {
+      if (
+        e.target === this.$el ||
+        this.$el.contains(e.target) ||
+        e.target.classList[0] === 'trigger'
+      ) {
         return
       }
       this.$emit(e.type, e)
