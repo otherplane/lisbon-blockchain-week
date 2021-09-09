@@ -44,7 +44,7 @@ function normalizeEvent(rawEvent) {
       venue: rawEvent.Venue,
       address: rawEvent.Address,
       image: rawEvent.Image,
-      registrationUrl: rawEvent['Registration Url'],
+      url: rawEvent['Event URL'],
       startTime: getTime(startTimestamp),
       endTime: getTime(endTimestamp),
       categories: rawEvent['Event type']

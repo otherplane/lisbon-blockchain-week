@@ -34,6 +34,7 @@
               {{ sponsor }}
             </p>
           </div>
+          <h3 class="subtitle">Location</h3>
           <p class="text">
             {{ event.venue }}
             <a
@@ -45,11 +46,11 @@
             </a>
           </p>
           <a
-            v-if="event.registrationUrl"
+            v-if="event.url"
             class="register-btn text"
-            :href="event.registrationUrl"
+            :href="event.url"
             target="_blank"
-            >Registration</a
+            >Event URL</a
           >
         </div>
       </div>
