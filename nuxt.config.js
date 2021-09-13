@@ -1,7 +1,8 @@
 import { languages } from './constants'
 import { fallbackLocale } from './default'
 
-const base = '/lisbon-blockchain-week'
+// const base = '/lisbon-blockchain-week'
+const base = '/'
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
