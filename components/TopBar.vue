@@ -3,7 +3,7 @@
     <h1 class="title">
       <SvgIcon name="LBW" />
     </h1>
-    <a :href="submitUrl"><Button>Submit event</Button></a>
+    <a :href="submitUrl" target="_blank"><Button>Submit event</Button></a>
   </div>
 </template>
 

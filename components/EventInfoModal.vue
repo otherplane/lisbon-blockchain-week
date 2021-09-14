@@ -109,6 +109,7 @@ export default {
   background: $beige;
   border: 2px solid $blue;
   color: $black;
+  min-width: 400px;
   grid-gap: 24px;
   .main {
     max-height: 70vh;
@@ -165,6 +166,7 @@ export default {
 }
 @media (max-width: 780px) {
   .modal {
+    min-width: 0;
     .main {
       width: 95vw;
       height: 95vh;
