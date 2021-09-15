@@ -169,7 +169,7 @@ export default {
     min-width: 0;
     .main {
       width: 95vw;
-      height: 95vh;
+      height: 85vh;
       max-height: 100vh;
       overflow-y: auto;
       overflow-x: hidden;
