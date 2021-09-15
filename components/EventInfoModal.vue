@@ -69,7 +69,7 @@ export default {
   computed: {
     backgroundUrl() {
       return (
-        this.event.url ||
+        this.event.image ||
         DEFAULT_BACKGROUND_IMAGE ||
         require(`@/assets/default_background.jpg`)
       )
