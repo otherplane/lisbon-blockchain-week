@@ -168,8 +168,8 @@ export default {
   .modal {
     min-width: 0;
     .main {
-      width: 95vw;
-      height: 95vh;
+      width: 98vw;
+      height: 98vh;
       max-height: 100vh;
       overflow-y: auto;
       overflow-x: hidden;

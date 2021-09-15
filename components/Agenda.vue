@@ -3,6 +3,7 @@
     <div class="header">
       <h2 class="text">October 2021</h2>
       <Select
+        class="select"
         :options="options"
         :default-option="selected"
         @update-selected="updateSelected"
@@ -294,8 +295,18 @@ export default {
 }
 @media (max-width: 780px) {
   .agenda {
+    justify-content: flex-start;
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      .select {
+        align-self: flex-end;
+        margin-top: 24px;
+      }
+    }
     .content {
-      grid-template-columns: auto 1fr;
+      grid-template-columns: 70px 1fr;
       grid-column-gap: 24px;
       justify-content: flex-start;
 
