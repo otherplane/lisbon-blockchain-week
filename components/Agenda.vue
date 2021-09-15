@@ -54,11 +54,13 @@
         </div>
       </div>
       <Empty v-else :day="currentDay" :category="selected.label" />
-      <EventInfoModal
-        v-if="currentEvent"
-        :event="currentEvent"
-        @close="closeModal"
-      />
+      <transition name="appear">
+        <EventInfoModal
+          v-if="currentEvent"
+          :event="currentEvent"
+          @close="closeModal"
+        />
+      </transition>
     </div>
   </div>
 </template>
@@ -219,6 +221,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.appear-enter-active {
+  transition: all 0.3s ease-in-out;
+}
+.appear-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+.appear-enter,
+.appear-leave-to {
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
 .current {
   color: $red;
   &.label {
