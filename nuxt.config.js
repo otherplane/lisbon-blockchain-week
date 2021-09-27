@@ -115,7 +115,6 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/date-fns',
     '@nuxtjs/fontawesome',
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',

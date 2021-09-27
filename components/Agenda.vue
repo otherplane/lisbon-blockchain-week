@@ -66,8 +66,8 @@
 </template>
 
 <script>
-import { format } from 'date-fns'
 import { fetchEvents } from '../fetchEvents'
+import { getDate, getDay } from '../utils'
 import { EVENT_CATEGORIES, WEEK, EVENTS_URL } from '~/constants.js'
 
 export default {
@@ -88,9 +88,6 @@ export default {
   },
   async fetch() {},
   computed: {
-    defaultDay() {
-      return format(new Date(1634544000000), 'dd-MM-yyyy')
-    },
     keyDays() {
       return Object.keys(this.days)
     },
@@ -163,19 +160,13 @@ export default {
         window.scrollTo(0, parseInt(scrollY || '0') * -1)
       })
     },
-    getDate(timestamp) {
-      return format(new Date(timestamp), 'dd-MM-yyyy')
-    },
-    getDay(timestamp) {
-      return format(new Date(timestamp), 'dd')
-    },
     setCurrentEvent() {
       this.events.map((event) => {
         if (
           event.startTimestamp < new Date().getTime() &&
           event.endTimestamp > new Date().getTime()
         ) {
-          this.currentDay = this.getDay(event.endTimestamp)
+          this.currentDay = getDay(event.endTimestamp)
           event.current = true
         } else {
           event.current = false
@@ -193,8 +184,8 @@ export default {
       this.filteredEvents = eventsToFilter
         .filter((event) => {
           return (
-            this.getDate(event.startTimestamp) ===
-            this.getDate(this.days[this.currentDay].timestamp || 0)
+            getDate(event.startTimestamp) ===
+            getDate(this.days[this.currentDay].timestamp || 0)
           )
         })
         .sort((ev1, ev2) => ev1.startTimestamp - ev2.startTimestamp)
