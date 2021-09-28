@@ -1,5 +1,5 @@
 import Papa from 'papaparse'
-import { getTime } from './utils'
+import { getTimestampFromDateAndTime, convertTime12to24 } from './utils'
 
 export function fetchEvents(fileUrl) {
   return new Promise((resolve, reject) => {
@@ -45,8 +45,8 @@ function normalizeEvent(rawEvent) {
       address: rawEvent.Address,
       image: rawEvent.Image,
       registrationUrl: rawEvent['Registration Url'],
-      startTime: getTime(startTimestamp),
-      endTime: getTime(endTimestamp),
+      startTime: convertTime12to24(rawEvent['Starting time']),
+      endTime: convertTime12to24(rawEvent['End time']),
       categories: rawEvent['Event type']
         .split(',')
         .map((category) => category.trim()),
@@ -54,8 +54,4 @@ function normalizeEvent(rawEvent) {
   } else {
     return null
   }
-}
-
-function getTimestampFromDateAndTime(date, time) {
-  return new Date(`${date} ${time}`).getTime()
 }
