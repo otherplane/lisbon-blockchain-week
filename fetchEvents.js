@@ -32,6 +32,7 @@ function normalizeEvent(rawEvent) {
       rawEvent['Event date'],
       rawEvent['End time']
     )
+
     return {
       id: `${rawEvent['Title of your event']} ${startTimestamp}`,
       sponsors: rawEvent['Sponsor(s)'],
@@ -44,7 +45,8 @@ function normalizeEvent(rawEvent) {
       venue: rawEvent.Venue,
       address: rawEvent.Address,
       image: rawEvent.Image,
-      registrationUrl: rawEvent['Registration Url'],
+      url: parseUrls(rawEvent['Event URL']),
+      urlNote: rawEvent['Url note'],
       startTime: convertTime12to24(rawEvent['Starting time']),
       endTime: convertTime12to24(rawEvent['End time']),
       categories: rawEvent['Event type']
@@ -53,5 +55,27 @@ function normalizeEvent(rawEvent) {
     }
   } else {
     return null
+  }
+}
+
+function parseUrls(url) {
+  if (url.includes(',')) {
+    const urls = url.split(',')
+
+    return urls.map((link) => {
+      if (link.includes('##')) {
+        return {
+          label: link.split('##')[0],
+          link: link.split('##')[1],
+        }
+      } else {
+        return {
+          label: 'Link 1',
+          link,
+        }
+      }
+    })
+  } else {
+    return url
   }
 }

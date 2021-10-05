@@ -34,6 +34,7 @@
               {{ sponsor }}
             </p>
           </div>
+          <h3 v-if="event.venue || event.address" class="subtitle">Location</h3>
           <p class="text">
             {{ event.venue }}
             <a
@@ -44,13 +45,25 @@
               {{ event.address }}
             </a>
           </p>
+          <h3 v-if="Array.isArray(event.url)" class="subtitle">Event urls</h3>
+          <p class="text" v-if="event.urlNote">{{ event.urlNote }}</p>
           <a
-            v-if="event.registrationUrl"
+            v-if="event.url && !Array.isArray(event.url)"
             class="register-btn text"
             :href="event.registrationUrl"
             target="_blank"
-            >Registration</a
+            >Event Url</a
           >
+          <div v-else>
+            <a
+              v-for="url in event.url"
+              :key="url.label"
+              class="register-btn text"
+              :href="url.link"
+              target="_blank"
+              >{{ url.label }}</a
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -157,7 +170,7 @@ export default {
     }
     .register-btn {
       color: $blue;
-      font-size: 24px;
+      font-size: 20px;
       text-decoration: underline;
       cursor: pointer;
       display: block;
