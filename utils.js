@@ -1,4 +1,4 @@
-import { format, utcToZonedTime, toDate } from 'date-fns-tz'
+import { format, utcToZonedTime, toDate, zonedTimeToUtc } from 'date-fns-tz'
 import { formatISO } from 'date-fns'
 
 const timeZone = 'Europe/Lisbon'
@@ -7,12 +7,16 @@ function getLisbonDate(timestamp) {
   return utcToZonedTime(new Date(timestamp), timeZone)
 }
 
+function getUtcFromLisbonTime(timestamp) {
+  return zonedTimeToUtc(timestamp, timeZone)
+}
+
 export function getTime(timestamp) {
   return format(getLisbonDate(timestamp), 'HH:mm', { timeZone })
 }
 
 export function getCalendarDate(timestamp) {
-  return formatISO(getLisbonDate(timestamp), { format: 'basic' })
+  return formatISO(getUtcFromLisbonTime(timestamp), { format: 'basic' })
 }
 
 export function getDate(timestamp) {
