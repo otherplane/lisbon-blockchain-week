@@ -45,12 +45,18 @@
               {{ event.address }}
             </a>
           </p>
+          <a
+            class="calendar-btn text"
+            :href="`https://www.google.com/calendar/render?action=TEMPLATE&text=${event.title}&location=${event.address}&dates=${calendarStartDate}%2F${calendarEndDate}`"
+            target="_blank"
+            >Add event to Google Calendar</a
+          >
           <h3 v-if="Array.isArray(event.url)" class="subtitle">Event urls</h3>
-          <p class="text" v-if="event.urlNote">{{ event.urlNote }}</p>
+          <p v-if="event.urlNote" class="text">{{ event.urlNote }}</p>
           <a
             v-if="event.url && !Array.isArray(event.url)"
             class="register-btn text"
-            :href="event.registrationUrl"
+            :href="event.url"
             target="_blank"
             >Event Url</a
           >
@@ -71,7 +77,9 @@
 </template>
 
 <script>
+import { getCalendarDate } from '../utils'
 import { DEFAULT_BACKGROUND_IMAGE } from '~/constants'
+
 export default {
   props: {
     event: {
@@ -80,6 +88,12 @@ export default {
     },
   },
   computed: {
+    calendarStartDate() {
+      return this.getCalendarDate(this.event.startTimestamp)
+    },
+    calendarEndDate() {
+      return this.getCalendarDate(this.event.endTimestamp)
+    },
     backgroundUrl() {
       return (
         this.event.image ||
@@ -110,6 +124,7 @@ export default {
     closeModal() {
       this.$emit('close')
     },
+    getCalendarDate,
   },
 }
 </script>
@@ -167,6 +182,12 @@ export default {
       color: $black;
       display: flex;
       flex-direction: column;
+    }
+    .calendar-btn {
+      color: $blue;
+      text-decoration: underline;
+      cursor: pointer;
+      display: block;
     }
     .register-btn {
       color: $blue;
